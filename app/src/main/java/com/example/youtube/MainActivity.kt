@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         val request = Request.Builder().url(url).build()
 
         val client = OkHttpClient()
-        client.newCall(request).enqueue(object: Callback{
+        client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body?.string()
                 println(body)

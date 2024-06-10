@@ -3,8 +3,10 @@ package com.example.youtube
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class MainAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
 
@@ -21,6 +23,14 @@ class MainAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomV
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val video = homeFeed.videos[position]
         holder.itemView.findViewById<TextView>(R.id.textView_video_title).text = video.name
+        holder.itemView.findViewById<TextView>(R.id.textView_channel_name).text = video.channel.name + " - " + "20K views\n4 days ago"
+
+        val thumbnailImageView = holder.itemView.findViewById<ImageView>(R.id.imageView_video_thumbnail)
+        Picasso.get().load(video.imageUrl).into(thumbnailImageView)
+
+        val channelProfileImageView = holder.itemView.findViewById<ImageView>(R.id.imageView_chanel_profile)
+        Picasso.get().load(video.channel.profileImageUrl).into(channelProfileImageView)
+
     }
 }
 
