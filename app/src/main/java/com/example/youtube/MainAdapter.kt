@@ -29,7 +29,7 @@ class MainAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomV
         Picasso.get().load(video.imageUrl).into(thumbnailImageView)
 
         val channelProfileImageView = holder.itemView.findViewById<ImageView>(R.id.imageView_chanel_profile)
-        Picasso.get().load(video.channel.profileImageUrl).into(channelProfileImageView)
+        Picasso.get().load(video.channel.profileimageUrl).into(channelProfileImageView)
 
     }
 }
