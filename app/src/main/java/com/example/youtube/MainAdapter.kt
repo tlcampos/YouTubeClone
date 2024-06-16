@@ -1,5 +1,6 @@
 package com.example.youtube
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,26 @@ class MainAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomV
         val channelProfileImageView = holder.itemView.findViewById<ImageView>(R.id.imageView_chanel_profile)
         Picasso.get().load(video.channel.profileimageUrl).into(channelProfileImageView)
 
+        holder.video = video
+
     }
 }
 
-class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class CustomViewHolder(itemView: View, var video: Video? = null) : RecyclerView.ViewHolder(itemView){
+
+    companion object {
+        const val VIDEO_TITLE_KEY = "VIDEO_TITLE"
+        const val VIDEO_ID_KEY = "VIDEO_ID"
+    }
+
+    init {
+        itemView.setOnClickListener {
+            val intent = Intent(itemView.context, CourseDetailActivity::class.java)
+
+            intent.putExtra(VIDEO_TITLE_KEY, video?.name)
+            intent.putExtra(VIDEO_ID_KEY, video?.id)
+
+            itemView.context.startActivity(intent)
+        }
+    }
+}
